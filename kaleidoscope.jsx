@@ -10,6 +10,7 @@ var input               = {
   scaleFactor           : 20,
   radiusFactor          : 1,
   itemFactor            : 0,
+  twistFactor           : 8,
   ringCount             : 5,
   itemCount             : 8,
   itemIncrement         : 1,
@@ -74,7 +75,7 @@ function drawItem(opts){
     var origScale   = (100+input.scaleFactor)/100/2*originalItem.width;
     var offset      = lastScale/100/2*originalItem.width + origScale;
     var translation = offset*input.radiusFactor*(opts.ringNumber+1);
-    var radians     = (2*Math.PI/opts.itemCount)*opts.itemNumber;
+    var radians     = (2*Math.PI/opts.itemCount)*opts.itemNumber+(input.twistFactor*opts.ringNumber);
 
     if(input.distributionVariance){
       var distributionVariance = randomNumber(0, input.distributionVariance)/100;
