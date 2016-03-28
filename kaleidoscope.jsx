@@ -9,7 +9,6 @@ var options             = {
   referencePoint        : 'Center',
   scaleFactor           : 1,
   radiusFactor          : 1,
-  itemFactor            : 0,
   twistFactor           : 0,
   ringCount             : 5,
   itemCount             : 6,
@@ -53,7 +52,7 @@ var lookUpReferencePointByName = function(str){
   var groups = {
     referencePoint  : dialog.add('group', [0, 0, 300, 20], 'Reference Point:'),
     d1              : dialog.add('panel', [0, 0, 300, 0], ''),
-    factor          : dialog.add('group', [0, 0, 300, 120], 'Factors:'),
+    factor          : dialog.add('group', [0, 0, 300, 90], 'Factors:'),
     d2              : dialog.add('panel', [0, 0, 300, 0], ''),
     count           : dialog.add('group', [0, 0, 300, 70], 'Counts:'),
     d3              : dialog.add('panel', [0, 0, 300, 0], ''),
@@ -72,8 +71,7 @@ var lookUpReferencePointByName = function(str){
   groups.referencePoint.add('statictext', [0, 2, 120, 20],  'Reference Point:');
   groups.factor.add('statictext',         [0, 10, 133, 20], 'Scale Factor:');
   groups.factor.add('statictext',         [0, 37, 133, 20], 'Radius Factor:');
-  groups.factor.add('statictext',         [0, 64, 133, 20], 'Item Factor:');
-  groups.factor.add('statictext',         [0, 91, 133, 20], 'Twist Factor:');
+  groups.factor.add('statictext',         [0, 64, 133, 20], 'Twist Factor:');
   groups.count.add('statictext',          [0, 0, 133, 20],  'Ring Count:');
   groups.count.add('statictext',          [0, 27, 133, 20], 'Item Count:');
   groups.count.add('statictext',          [0, 52, 133, 20], 'Increment Count:');
@@ -91,15 +89,11 @@ var lookUpReferencePointByName = function(str){
       optionName : 'scaleFactor'
     },
     {
-      el : groups.factor.add('slider', [123, 41, 285, 25], options.radiusFactor, 1, 100),
+      el : groups.factor.add('slider', [123, 41, 285, 25], options.radiusFactor, -1, 5),
       optionName : 'radiusFactor'
     },
     {
-      el : groups.factor.add('slider', [123, 67, 285, 25], options.itemFactor, 1, 20),
-      optionName : 'itemFactor'
-    },
-    {
-      el : groups.factor.add('slider', [123, 93, 285, 25], options.twistFactor, 1, 100),
+      el : groups.factor.add('slider', [123, 67, 285, 25], options.twistFactor, 0, 75),
       optionName : 'twistFactor'
     },
     {
@@ -115,15 +109,15 @@ var lookUpReferencePointByName = function(str){
       optionName : 'itemIncrement'
     },
     {
-      el : groups.variance.add('slider', [123, 0, 285, 25], options.itemVariance, 1, 100),
+      el : groups.variance.add('slider', [123, 0, 285, 25], options.itemVariance, 0, 5),
       optionName : 'itemVariance'
     },
     {
-      el : groups.variance.add('slider', [123, 41, 285, 25], options.distributionVariance, 1, 100),
+      el : groups.variance.add('slider', [123, 41, 285, 25], options.distributionVariance, 0, 25),
       optionName : 'distributionVariance'
     },
     {
-      el : groups.variance.add('slider', [123, 67, 285, 25], options.rotationVariance, 1, 100),
+      el : groups.variance.add('slider', [123, 67, 285, 25], options.rotationVariance, 0, 90),
       optionName : 'rotationVariance'
     },
     {
@@ -216,7 +210,8 @@ function drawItem(opts){
   angle = angle*(opts.itemNumber+1);
 
   // calculate radians and add twist effect
-  var twist   = options.twistFactor/100*opts.ringNumber;
+  var twist = 0;
+  if(options.twistFactor) twist = options.twistFactor/100*opts.ringNumber;
   var radians = (2*Math.PI/opts.itemCount)*opts.itemNumber+twist;
 
   // add positional variance
@@ -244,6 +239,6 @@ function drawItem(opts){
 
 
 
-var randomNumber = function(min, max){
+function randomNumber(min, max){
   return Math.floor(Math.random() * (max - min + 1)) + min;
-};
+}
