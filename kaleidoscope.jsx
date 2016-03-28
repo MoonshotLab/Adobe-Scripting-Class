@@ -3,7 +3,7 @@
 // An Adobe Illustrator script which takes a path or group
 // and radially distributes objects based on sets of options
 
-
+var hasRun              = false;
 var originalItem        = app.activeDocument.selection[0];
 var options             = {
   referencePoint        : 'Center',
@@ -150,8 +150,13 @@ var lookUpReferencePointByName = function(str){
     if(!val) val = Number(this.text);
     options[this.optionName] = val;
 
-    // transform and paint the UI
     dialog.enabled = false;
+
+    // undo the last transformation
+    if(!hasRun) hasRun = true;
+    else { app.undo(); }
+
+    // transform and paint the UI
     applyTransformation();
     redraw();
     dialog.enabled = true;
@@ -162,7 +167,7 @@ var lookUpReferencePointByName = function(str){
 
 
 
-//
+
 function applyTransformation(){
   // do for each ring
   for(var i = 0; i<options.ringCount; i++){
