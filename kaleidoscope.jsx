@@ -3,7 +3,6 @@
 // An Adobe Illustrator script which takes a path or group
 // and radially distributes objects based on sets of options
 
-var hasRun              = false;
 var originalItem        = app.activeDocument.selection[0];
 var options             = {
   referencePoint        : 'Center',
@@ -85,11 +84,11 @@ var lookUpReferencePointByName = function(str){
       optionName : 'referencePoint'
     },
     {
-      el : groups.factor.add('slider', [123, 0, 285, 25], options.scaleFactor, 1, 100),
+      el : groups.factor.add('slider', [123, 0, 285, 25], options.scaleFactor, -100, 100),
       optionName : 'scaleFactor'
     },
     {
-      el : groups.factor.add('slider', [123, 41, 285, 25], options.radiusFactor, -1, 5),
+      el : groups.factor.add('slider', [123, 41, 285, 25], options.radiusFactor, 0.1, 5),
       optionName : 'radiusFactor'
     },
     {
@@ -147,8 +146,7 @@ var lookUpReferencePointByName = function(str){
     dialog.enabled = false;
 
     // undo the last transformation
-    if(!hasRun) hasRun = true;
-    else { app.undo(); }
+    app.undo();
 
     // transform and paint the UI
     applyTransformation();
@@ -156,6 +154,8 @@ var lookUpReferencePointByName = function(str){
     dialog.enabled = true;
   }
 
+  applyTransformation();
+  redraw();
   dialog.show();
 })();
 
