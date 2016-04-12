@@ -231,10 +231,10 @@ ___
 document = app.activeDocument;
 original = app.activeDocument.selection[0];
 
-for(var i=0; i<5; i++) {
-  for(var j=0; j<5; j++) {
+for(var x=0; x<5; x++) {
+  for(var y=0; y<5; y++) {
     var newItem      = original.duplicate();
-    newItem.position = [100*i, 100*j];
+    newItem.position = [100*x, 100*y];
   }
 }
 ```
@@ -248,10 +248,10 @@ ___
 document = app.activeDocument;
 original = app.activeDocument.selection[0];
 
-for(var i=0; i<5; i++) {
-  for(var j=0; j<5; j++) {
+for(var x=0; x<5; x++) {
+  for(var y=0; y<5; y++) {
     var newItem      = original.duplicate();
-    newItem.position = [100*i, -1*100*j];
+    newItem.position = [100*x, -100*y];
   }
 }
 ```
@@ -264,11 +264,11 @@ ___
 document = app.activeDocument;
 original = app.activeDocument.selection[0];
 
-for(var i=0; i<5; i++) {
-  for(var j=0; j<5; j++) {
+for(var x=0; x<5; x++) {
+  for(var y=0; y<5; y++) {
     var newItem      = original.duplicate();
-    newItem.position = [100*i, -1*100*j];
-    newItem.translate(50/2, -1*50/2);
+    newItem.position = [100*x, -100*y];
+    newItem.translate(25, -25);
   }
 }
 ```
@@ -278,12 +278,11 @@ ___
 document = app.activeDocument;
 original = app.activeDocument.selection[0];
 
-for(var i=0; i<5; i++) {
-
-  for(var j=0; j<5; j++) {
+for(var x=0; x<5; x++) {
+  for(var y=0; y<5; y++) {
     var newItem      = original.duplicate();
-    newItem.position = [100*i, -1*100*j];
-    newItem.translate(50/2, -1*50/2);
+    newItem.position = [100*x, -100*y];
+    newItem.translate(25, -25);
 
     var randomAngle  = random(0, 360);
     newItem.rotate(randomAngle);
@@ -311,11 +310,11 @@ numRows     = prompt('How many rows?');
 containerW  = document.width/numColumns;
 containerH  = document.height/numRows;
 
-for(var i=0; i<numColumns; i++){
-  for(var j=0; j<numRows; j++){
+for(var x=0; x<5; x++) {
+  for(var y=0; y<5; y++) {
     var newItem      = original.duplicate();
-    newItem.position = [containerW*i, -1*containerH*j];
-    newItem.translate(50/2, -1*50/2);
+    newItem.position = [containerW*x, -1*containerH*y];
+    newItem.translate(25, -25);
 
     var randomAngle  = random(0, 360);
     newItem.rotate(randomAngle);
@@ -327,7 +326,37 @@ function random(min, max){
 }
 ```
 
-^ there’s more to do here, but this will work for now
+
+___
+
+```javascript
+document    = app.activeDocument;
+original    = app.activeDocument.selection[0];
+
+numColumns  = prompt('How many columns?');
+numRows     = prompt('How many rows?');
+
+containerW  = document.width/numColumns;
+containerH  = document.height/numRows;
+
+for(var x=0; x<5; x++) {
+  for(var y=0; y<5; y++) {
+    var newItem      = original.duplicate();
+    newItem.position = [containerW*x, -1*containerH*y];
+    newItem.translate(original.width/2, -1*original.height/2);
+
+    var randomAngle  = random(0, 360);
+    newItem.rotate(randomAngle);
+  }
+}
+
+original.remove();
+
+function random(min, max){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+```
+
 
 ___
 
