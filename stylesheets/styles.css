@@ -83,6 +83,10 @@ h2 {
   color:#393939;
 }
 
+h3{
+  margin-top: 70px;
+}
+
 h3, h4, h5, h6 {
   color:#494949;
 }
@@ -195,7 +199,7 @@ header ul a {
   color:#999;
   display:block;
   text-align:center;
-  padding-top:6px;
+  padding-top:13px;
   height:34px;
 }
 

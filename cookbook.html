@@ -1,0 +1,129 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Adobe Scripting Class by MoonshotLab</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="wrapper">
+      <header>
+        <h1>Adobe Scripting 101</h1>
+        <p>Make your own features for Photoshop, Illustrator, inDesign, Bridge, and more</p>
+
+        <ul>
+          <li><a href="/"><strong>About</strong></a></li>
+          <li><a href="/cookbook.html"><strong>Cookbook</strong></a></li>
+          <li><a href="/examples.html"><strong>Examples</strong></a></li>
+        </ul>
+      </header>
+
+      <section>
+
+<h2><a id="cookbook" class="anchor" href="#cookbook" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Cookbook</h2>
+
+<h3><a id="how-can-i-write-a-comment-in-my-code" class="anchor" href="#how-can-i-write-a-comment-in-my-code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I write a comment in my code?</h3>
+<pre><code>// this is a comment, it does nothing but
+// it helps me understand what's happening
+</code></pre>
+
+<h3><a id="how-can-i-get-the-width-of-the-current-document" class="anchor" href="#how-can-i-get-the-width-of-the-current-document" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I get the width of the current document?</h3>
+<pre><code>width = app.activeDocument.width;
+</code></pre>
+
+<h3><a id="how-can-i-iterate-over-the-layers-in-a-document" class="anchor" href="#how-can-i-iterate-over-the-layers-in-a-document" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I iterate over the layers in a document?</h3>
+<pre><code>document = app.activeDocument;
+for(var i=0; i&lt;document.layers.length; i++) {
+  // do something amazing here
+}
+</code></pre>
+
+<h3><a id="how-can-i-write-conditional-logic" class="anchor" href="#how-can-i-write-conditional-logic" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I write conditional logic?</h3>
+<pre><code>if(app.activeDocument.width &gt; 500){
+  // the document is greater than 500 pixels wide
+} else{
+  // the document is less than 500 pixels wide
+}
+</code></pre>
+
+<h3><a id="how-can-i-duplicate-the-selected-path-or-layer" class="anchor" href="#how-can-i-duplicate-the-selected-path-or-layer" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I duplicate the selected path or layer?</h3>
+<pre><code>copy = app.activeDocument.selection[0].duplicate();
+</code></pre>
+
+<h3><a id="how-can-i-position-a-compound-path-relative-to-the-art-board" class="anchor" href="#how-can-i-position-a-compound-path-relative-to-the-art-board" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I position a compound path relative to the art board?</h3>
+<pre><code>selection = app.activeDocument.selection[0];
+selection.position = [0, 0];
+</code></pre>
+
+<h3><a id="how-can-i-position-a-compound-path-relative-to-itself" class="anchor" href="#how-can-i-position-a-compound-path-relative-to-itself" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I position a compound path relative to itself?</h3>
+<pre><code>// scoot the selection 50 pixels to the right
+selection = app.activeDocument.selection[0];
+selection.translate(50, 0);
+</code></pre>
+
+<h3><a id="how-can-i-rotate-a-compound-path-with-degrees" class="anchor" href="#how-can-i-rotate-a-compound-path-with-degrees" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I rotate a compound path with degrees?</h3>
+<pre><code>// rotate the selection 90 degrees
+selection = app.activeDocument.selection[0];
+selection.rotate(90);
+</code></pre>
+
+<h3><a id="how-can-i-use-a-function-to-generate-a-random-number" class="anchor" href="#how-can-i-use-a-function-to-generate-a-random-number" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I use a function to generate a random number?</h3>
+<pre><code>function random(min, max){
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+</code></pre>
+
+<h3><a id="how-can-i-get-an-element-by-its-name" class="anchor" href="#how-can-i-get-an-element-by-its-name" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I get an element by it's name?</h3>
+<pre><code>document = app.activeDocument;
+thing = document.pageItems.getByName('myname');
+thing.opacity = 25;
+</code></pre>
+
+<h3><a id="how-can-i-prompt-a-user-for-input" class="anchor" href="#how-can-i-prompt-a-user-for-input" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I prompt a user for input?</h3>
+<pre><code>name = prompt('What up playa?');
+</code></pre>
+
+<h3><a id="how-can-i-add-undo-to-my-script" class="anchor" href="#how-can-i-add-undo-to-my-script" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I add undo to my script?</h3>
+<pre><code>app.undo();
+</code></pre>
+
+<h3><a id="how-can-i-change-the-zorder-of-a-compound-path" class="anchor" href="#how-can-i-change-the-zorder-of-a-compound-path" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I change the zOrder of a compound path?</h3>
+<pre><code>// sends the selected path to the very back
+app.activeDocument.selection[0].zOrder(ZOrderMethod.SENDTOBACK);
+</code></pre>
+
+<h3><a id="how-can-i-get-the-yellow-cmyk-value-of-the-5th-item-in-the-swatch-panel" class="anchor" href="#how-can-i-get-the-yellow-cmyk-value-of-the-5th-item-in-the-swatch-panel" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I get the yellow CMYK value of the 5th item in the swatch panel?</h3>
+<pre><code>swatches = document.swatches;
+yellow = swatches[4].color.yellow;
+</code></pre>
+
+<h3><a id="how-can-i-update-the-text-of-a-selected-object" class="anchor" href="#how-can-i-update-the-text-of-a-selected-object" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How can I update the text of a selected object?</h3>
+<pre><code>app.activeDocument.selection[0].words.length;
+</code></pre>
+
+<h3><a id="where-can-i-learn-more-about-adobe-illustrator-scripting" class="anchor" href="#where-can-i-learn-more-about-adobe-illustrator-scripting" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Where can I learn more about adobe Illustrator scripting?</h3>
+<p>From the official <a href="http://wwwimages.adobe.com/content/dam/Adobe/en/devnet/illustrator/sdk/CC2015/Illustrator%20Scripting%20Reference%20-%20JavaScript.pdf">Adobe Illustrator scripting documentation pdf</a>.</p>
+
+<h3><a id="will-the-code-listed-here-work-in-other-adobe-applications-photoshop-bridge-indesign-etc" class="anchor" href="#will-the-code-listed-here-work-in-other-adobe-applications-photoshop-bridge-indesign-etc" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Will the code listed here work in other Adobe applications (Photoshop, Bridge, inDesign, etc.)</h3>
+<p>For the most part, but different Adobe applications have different concepts. For example: selecting and manipulating paths will not work in Bridge. Pages are a concept within inDesign which has no equal counterpart in Illustrator of Photoshop.</p>
+
+</section>
+
+      <footer>
+        <p class="view"><a href="https://github.com/MoonshotLab/Adobe-Scripting-Class">View the Project on GitHub <small>MoonshotLab/Adobe-Scripting-Class</small></a></p>
+      </footer>
+
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+
+  </body>
+</html>

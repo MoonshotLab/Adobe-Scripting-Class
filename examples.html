@@ -29,8 +29,46 @@
 
       <section>
 
-<h2><a id="about" class="anchor" href="#about" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>About</h2>
-<p>This short guide is meant to be used as a companion to Moonshot's Adobe Scripting 101 class. Within the class, you'll learn how to build new features for Adobe Creative Suite applications.</p>
+<h2><a id="examples" class="anchor" href="#examples" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Examples</h2>
+
+<h3><a id="" class="anchor" href="#" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Save as PNG Boilerplate</h3>
+<pre><code>document = app.activeDocument;
+
+for(var i=0; i < document.layers.length; i++) {
+  document.layers[i].visible = false;
+}
+
+for(var i=0; i < document.layers.length; i++) {
+
+  document.layers[i].visible = true;
+
+  outputPath = document.path;
+  outputPath.changePath(document.layers[i].name + '.png');
+
+  exportRules = new ExportOptionsPNG24();
+  exportRules.transparency = true;
+
+  document.exportFile(outputPath, ExportType.PNG24, exportRules);
+}
+</code></pre>
+
+
+
+<h3><a id="" class="anchor" href="#" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Generative Drawing Boilerplate</h3>
+<pre><code>document = app.activeDocument;
+
+original = app.activeDocument.selection[0];
+
+for(var x=0; x < 5; x++) {
+  for(var y=0; y < 5; y++) {
+    var newItem = original.duplicate();
+    newItem.position = [100*x, 100*y];
+  }
+}
+
+</code></pre>
+
+
 
 </section>
 
