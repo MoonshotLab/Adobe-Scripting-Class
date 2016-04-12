@@ -107,11 +107,10 @@ ___
 
 1. Select this document
 2. Hide all the the layers
-3. Show each layer one at a time
-4. Set it to visible
-5. figure out where to save it
-6. save it
-7. Repeat steps 3 through 6 until there are no more layers
+3. Set a layer to visible
+4. Figure out where to save it
+5. Save it
+6. Repeat steps 3 through 5 until there are no more layers
 
 ___
 
@@ -220,7 +219,7 @@ ___
 
 ___
 
-![](./presentation-assets/generative-drawing.png)
+![fit](./presentation-assets/generative-drawing.png)
 
 ^ draw the grid on the board
 ^ setup a new illustrator document 500px x 500px
